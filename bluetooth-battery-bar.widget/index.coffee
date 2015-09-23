@@ -8,7 +8,7 @@ borderRadius = '3px'
 bgOpacity    = 0.9
 
 command: """
-kbatt=`ioreg -n "BNBMouseDevice" | grep BatteryPercent | tail -1 | awk -F"=" {'print $2'}` &&
+kbatt=`ioreg -n "AppleBluetoothHIDKeyboard" | grep BatteryPercent | tail -1 | awk -F"=" {'print $2'}` &&
 if [ ${#kbatt} -gt 0 ]; then echo "Keyboard$kbatt%"; fi &&
 tbatt=`ioreg -c BNBTrackpadDevice | grep BatteryPercent | tail -1 | awk -F"=" {'print $2'}` &&
 if [ ${#tbatt} -gt 0 ]; then echo "Trackpad$tbatt%"; fi &&
