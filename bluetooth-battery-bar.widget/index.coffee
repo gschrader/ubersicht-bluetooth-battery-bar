@@ -92,12 +92,12 @@ renderInfo: (name, pctg) -> """
 
 update: (output, domEl) ->
   devices = output.split('\n')
+  patt = /(.*?)(\d{1,3}%)/
+
   $(domEl).html ''
+  render = @renderInfo
 
-  for device, i in devices
-    args = device.split(' ')
-    if (args[1])
-      args[1] = args[1..].join(' ')
-      $(domEl).append @renderInfo(args...)
-
-  $(domEl).append ''
+  for device, i in devices when device.match patt
+    do (device) ->
+      [match, name, pct] = device.match patt
+      $(domEl).append render(name, pct)
